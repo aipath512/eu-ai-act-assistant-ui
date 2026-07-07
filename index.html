@@ -10,71 +10,52 @@
 <body>
 
 <header>
-  <div class="logo-area">
-    <img src="5thelement-logo.png" class="logo" alt="5thelement.AI">
-  </div>
-
+  <img class="logo" src="5thelement-logo.png" alt="5thelement.AI">
   <button class="hamburger">☰</button>
 </header>
 
-<section class="title">
+<section class="hero">
   <h1>EU AI Act</h1>
   <h2>Search & Generator™</h2>
-
   <div class="meta">
-    Version v0.1.0 &nbsp; | &nbsp;
-    Updated: 07 Jul 2026 &nbsp; | &nbsp;
-    26 days until 2 August 2026
+    Version v0.1.0 | Updated: 07 Jul 2026 | 26 days until 2 August 2026
   </div>
 </section>
 
-<section class="countries">
-  🇦🇹 Austria • 🇧🇪 Belgium • 🇧🇬 Bulgaria • 🇭🇷 Croatia • 🇨🇾 Cyprus • 🇨🇿 Czechia • 🇩🇰 Denmark • 🇪🇪 Estonia • 🇫🇮 Finland • 🇫🇷 France • 🇩🇪 Germany • 🇮🇹 Italy • 🇳🇱 Netherlands • 🇵🇹 Portugal • 🇷🇴 Romania • 🇪🇸 Spain
-</section>
+<div class="ticker-window">
+  <div class="ticker-track">
+    🇦🇹 Austria • 🇧🇪 Belgium • 🇧🇬 Bulgaria • 🇭🇷 Croatia • 🇨🇾 Cyprus • 🇨🇿 Czechia • 🇩🇰 Denmark • 🇪🇪 Estonia • 🇫🇮 Finland • 🇫🇷 France • 🇩🇪 Germany • 🇬🇷 Greece • 🇭🇺 Hungary • 🇮🇪 Ireland • 🇮🇹 Italy • 🇱🇻 Latvia • 🇱🇹 Lithuania • 🇱🇺 Luxembourg • 🇲🇹 Malta • 🇳🇱 Netherlands • 🇵🇱 Poland • 🇵🇹 Portugal • 🇷🇴 Romania • 🇸🇰 Slovakia • 🇸🇮 Slovenia • 🇪🇸 Spain
+  </div>
+</div>
 
-<section class="search-box">
+<section class="search">
 <input id="question" placeholder="Ask any question about EU AI Act...">
 <button onclick="ask()">Search</button>
 </section>
 
 <section class="results">
 <h2>Search Results</h2>
-<div id="answer">
-Search results will appear here...
-</div>
+<div id="answer">Search results will appear here...</div>
 </section>
-
 
 <script>
 const API="https://eu-ai-act-search-api.aipath512.workers.dev/search?q=";
 
 async function ask(){
-
-const box=document.getElementById("answer");
-box.innerHTML="Analysing EU AI Act evidence...";
-
-try{
-const r=await fetch(API+encodeURIComponent(
-document.getElementById("question").value
-));
-
-const d=await r.json();
-
-if(d.results && d.results.length){
-box.innerHTML=d.results.map(x=>`
-<div class="card">
-<h3>${x.title}</h3>
-<p>${x.snippet}</p>
-</div>
-`).join("");
-}else{
-box.innerHTML="No evidence found.";
-}
-
-}catch(e){
-box.innerHTML=e.message;
-}
-
+ const box=document.getElementById("answer");
+ box.innerHTML="Analysing EU AI Act evidence...";
+ try{
+  const r=await fetch(API+encodeURIComponent(document.getElementById("question").value));
+  const d=await r.json();
+  if(d.results?.length){
+    box.innerHTML=d.results.map(x=>`
+      <div class="card">
+        <h3>${x.title}</h3>
+        <p>${x.snippet}</p>
+        <button>See More</button>
+      </div>`).join("");
+  } else box.innerHTML="No evidence found.";
+ }catch(e){box.innerHTML=e.message;}
 }
 </script>
 
