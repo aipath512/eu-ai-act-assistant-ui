@@ -7,7 +7,7 @@
 <title>EU AI Act Generator</title>
 
 <link rel="stylesheet" href="style.css">
-Article 14
+
 </head>
 
 <body>
@@ -15,7 +15,6 @@ Article 14
 <div class="page">
 
 <h1>EU AI Act Generator</h1>
-
 
 <div class="search-area">
 
@@ -80,9 +79,13 @@ box.innerHTML = d.results.map(item => `
 
 <div class="result">
 
-<h3>${item.title}</h3>
+<h3>EU AI Act Evidence</h3>
 
 <p>${item.snippet}</p>
+
+<button onclick="openDetail('${item.id}')">
+See More →
+</button>
 
 </div>
 
@@ -91,7 +94,7 @@ box.innerHTML = d.results.map(item => `
 } else {
 
 box.innerText =
-  JSON.stringify(d, null, 2);
+"No relevant EU AI Act evidence found.";
 
 }
 
@@ -104,6 +107,13 @@ box.innerText =
 e.message;
 
 }
+
+}
+
+
+function openDetail(id){
+
+alert("Detail page for: " + id);
 
 }
 
