@@ -3,39 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EU AI Act Assistant</title>
+
+<title>EU AI Act Generator</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
+
 <div class="page">
 
-<h1>EU AI Act Assistant</h1>
+<h1>EU AI Act Generator</h1>
+
 
 <div class="search-area">
-<input id="question" placeholder="Ask any question about EU AI Act...">
-<button onclick="ask()">Search</button>
+
+<input 
+id="question"
+placeholder="Ask any question about EU AI Act..."
+>
+
+<button onclick="ask()">
+Search
+</button>
+
 </div>
+
 
 <div class="answer-box">
-<div id="answer">Your EU AI Act answer will appear here, in your language.</div>
+
+<div id="answer">
+Your EU AI Act answer will appear here.
 </div>
 
 </div>
+
+
+</div>
+
 
 <script>
-const API="https://eu-ai-act-search-api.aipath512.workers.dev/search?q=";
+
+const API =
+"https://eu-ai-act-search-api.aipath512.workers.dev/search?q=";
+
 
 async function ask(){
-const box=document.getElementById("answer");
-box.innerText="Analysing EU AI Act evidence...";
-try{
-const r=await fetch(API+encodeURIComponent(document.getElementById("question").value));
-const d=await r.json();
-box.innerText=d.answer || "No answer";
-}catch(e){
-box.innerText=e.message;
+
+const box =
+document.getElementById("answer");
+
+
+box.innerText =
+"Analysing EU AI Act evidence...";
+
+
+try {
+
+const r =
+await fetch(
+API +
+encodeURIComponent(
+document.getElementById("question").value
+)
+);
+
+
+const d =
+await r.json();
+
+
+box.innerText =
+d.answer || "No answer";
+
+
 }
+
+catch(e){
+
+box.innerText =
+e.message;
+
 }
+
+}
+
 </script>
+
+
 </body>
 </html>
