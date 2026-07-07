@@ -1,63 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EU AI Act Generator™</title>
+<title>EU AI Act Search & Generator™</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="header">
-  <div>
-    <h1>EU AI Act Generator™</h1>
-    <div class="meta">
-      Version v0.1.0<br>
-      Updated: 07 Jul 2026 22:45 UTC<br>
-      Countdown: 26 days until 2 August 2026
-    </div>
+<header>
+  <div class="logo-area">
+    <img src="5thelement-logo.png" class="logo" alt="5thelement.AI">
   </div>
 
-  <button class="menu">☰</button>
+  <button class="hamburger">☰</button>
 </header>
 
-<main>
+<section class="title">
+  <h1>EU AI Act</h1>
+  <h2>Search & Generator™</h2>
 
-<section class="search">
-  <input placeholder="Ask any question about EU AI Act...">
-  <button>Search</button>
+  <div class="meta">
+    Version v0.1.0 &nbsp; | &nbsp;
+    Updated: 07 Jul 2026 &nbsp; | &nbsp;
+    26 days until 2 August 2026
+  </div>
 </section>
 
-<section class="ticker">
-  <div class="ticker-track">
-    MODULES →
-    &nbsp; Prohibited Practices •
-    Risk Classification •
-    AI Literacy •
-    High-Risk Assessment •
-    Technical Documentation •
-    Human Oversight •
-    Data Governance •
-    Logging & Monitoring •
-    Incident Reporting →
-  </div>
+<section class="countries">
+  🇦🇹 Austria • 🇧🇪 Belgium • 🇧🇬 Bulgaria • 🇭🇷 Croatia • 🇨🇾 Cyprus • 🇨🇿 Czechia • 🇩🇰 Denmark • 🇪🇪 Estonia • 🇫🇮 Finland • 🇫🇷 France • 🇩🇪 Germany • 🇮🇹 Italy • 🇳🇱 Netherlands • 🇵🇹 Portugal • 🇷🇴 Romania • 🇪🇸 Spain
+</section>
+
+<section class="search-box">
+<input id="question" placeholder="Ask any question about EU AI Act...">
+<button onclick="ask()">Search</button>
 </section>
 
 <section class="results">
-  <h2>Search Result</h2>
-
-  <div class="result-card">
-    <h3>Article 14 — Human Oversight</h3>
-    <p>
-      Human oversight measures and requirements under the EU AI Act.
-    </p>
-    <button>See More</button>
-  </div>
-
+<h2>Search Results</h2>
+<div id="answer">
+Search results will appear here...
+</div>
 </section>
 
-</main>
+
+<script>
+const API="https://eu-ai-act-search-api.aipath512.workers.dev/search?q=";
+
+async function ask(){
+
+const box=document.getElementById("answer");
+box.innerHTML="Analysing EU AI Act evidence...";
+
+try{
+const r=await fetch(API+encodeURIComponent(
+document.getElementById("question").value
+));
+
+const d=await r.json();
+
+if(d.results && d.results.length){
+box.innerHTML=d.results.map(x=>`
+<div class="card">
+<h3>${x.title}</h3>
+<p>${x.snippet}</p>
+</div>
+`).join("");
+}else{
+box.innerHTML="No evidence found.";
+}
+
+}catch(e){
+box.innerHTML=e.message;
+}
+
+}
+</script>
 
 </body>
 </html>
