@@ -15,48 +15,119 @@
 </header>
 
 <section class="hero">
-  <h1>EU AI Act</h1>
-  <h2>Search & Generator™</h2>
-  <div class="meta">
-    Version v0.1.0 | Updated: 07 Jul 2026 | Countdown to 2 August 2026
-  </div>
+
+<h1>EU AI Act</h1>
+<h2>Search & Generator™</h2>
+
+<div class="meta" id="meta"></div>
+
 </section>
+
 
 <div class="ticker-window">
-  <div class="ticker-track">
-    🇦🇹 Austria • 🇧🇪 Belgium • 🇧🇬 Bulgaria • 🇭🇷 Croatia • 🇨🇾 Cyprus • 🇨🇿 Czechia • 🇩🇰 Denmark • 🇪🇪 Estonia • 🇫🇮 Finland • 🇫🇷 France • 🇩🇪 Germany • 🇬🇷 Greece • 🇭🇺 Hungary • 🇮🇪 Ireland • 🇮🇹 Italy • 🇱🇻 Latvia • 🇱🇹 Lithuania • 🇱🇺 Luxembourg • 🇲🇹 Malta • 🇳🇱 Netherlands • 🇵🇱 Poland • 🇵🇹 Portugal • 🇷🇴 Romania • 🇸🇰 Slovakia • 🇸🇮 Slovenia • 🇪🇸 Spain
-  </div>
+<div class="ticker-track">
+
+🇦🇹 Austria • 🇧🇪 Belgium • 🇧🇬 Bulgaria • 🇭🇷 Croatia • 🇨🇾 Cyprus • 🇨🇿 Czechia • 🇩🇰 Denmark • 🇪🇪 Estonia • 🇫🇮 Finland • 🇫🇷 France • 🇩🇪 Germany • 🇬🇷 Greece • 🇭🇺 Hungary • 🇮🇪 Ireland • 🇮🇹 Italy • 🇱🇻 Latvia • 🇱🇹 Lithuania • 🇱🇺 Luxembourg • 🇲🇹 Malta • 🇳🇱 Netherlands • 🇵🇱 Poland • 🇵🇹 Portugal • 🇷🇴 Romania • 🇸🇰 Slovakia • 🇸🇮 Slovenia • 🇪🇸 Spain
+
+</div>
 </div>
 
+
 <section class="search">
+
 <input id="question" placeholder="Ask any question about EU AI Act...">
+
 <button onclick="ask()">Search</button>
+
 </section>
+
 
 <section class="results">
+
 <h2>Search Results</h2>
-<div id="answer">Search results will appear here...</div>
+
+<div id="answer">
+Search results will appear here...
+</div>
+
 </section>
 
+
 <script>
+
+const version="v0.1.0";
+
+const deadline=new Date("2026-08-02T00:00:00Z");
+
+const now=new Date();
+
+const daysLeft=Math.ceil(
+(deadline-now)/(1000*60*60*24)
+);
+
+document.getElementById("meta").innerHTML =
+`
+Version ${version}<br>
+Updated: ${now.toUTCString()}<br>
+Days remaining until 2 August 2026: ${daysLeft} days
+`;
+
+
 const API="https://eu-ai-act-search-api.aipath512.workers.dev/search?q=";
 
+
 async function ask(){
- const box=document.getElementById("answer");
- box.innerHTML="Analysing EU AI Act evidence...";
- try{
-  const r=await fetch(API+encodeURIComponent(document.getElementById("question").value));
-  const d=await r.json();
-  if(d.results?.length){
-    box.innerHTML=d.results.map(x=>`
-      <div class="card">
-        <h3>${x.title}</h3>
-        <p>${x.snippet}</p>
-        <button>See More</button>
-      </div>`).join("");
-  } else box.innerHTML="No evidence found.";
- }catch(e){box.innerHTML=e.message;}
+
+const box=document.getElementById("answer");
+
+box.innerHTML="Analysing EU AI Act evidence...";
+
+try{
+
+const r=await fetch(
+API+
+encodeURIComponent(
+document.getElementById("question").value
+)
+);
+
+const d=await r.json();
+
+
+if(d.results && d.results.length){
+
+box.innerHTML=d.results.map(x=>`
+
+<div class="card">
+
+<h3>${x.title}</h3>
+
+<p>${x.snippet}</p>
+
+<button>See More</button>
+
+</div>
+
+`).join("");
+
 }
+
+else {
+
+box.innerHTML="No evidence found.";
+
+}
+
+}
+
+catch(e){
+
+box.innerHTML=e.message;
+
+}
+
+}
+
 </script>
 
 </body>
