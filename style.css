@@ -1,0 +1,87 @@
+*{box-sizing:border-box}
+
+body{
+margin:0;
+min-height:100vh;
+font-family:Arial,sans-serif;
+background-image:url("eu-ai-act-background.webp");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+}
+
+.overlay{
+min-height:100vh;
+padding:40px 20px;
+background:rgba(0,0,0,.35);
+text-align:center;
+}
+
+h1{
+font-size:42px;
+color:white;
+text-shadow:0 3px 8px black;
+}
+
+p{
+font-size:20px;
+color:white;
+}
+
+.modules{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+margin:30px auto;
+max-width:900px;
+}
+
+.modules button{
+background:white;
+border:none;
+border-radius:25px;
+padding:12px 18px;
+cursor:pointer;
+}
+
+.search-box{
+display:flex;
+justify-content:center;
+gap:10px;
+margin:40px auto;
+max-width:700px;
+}
+
+.search-box input{
+flex:1;
+padding:18px 25px;
+font-size:18px;
+border-radius:35px;
+border:none;
+}
+
+.search-box button{
+padding:18px 35px;
+border-radius:35px;
+border:none;
+background:white;
+font-size:18px;
+cursor:pointer;
+}
+
+#answer{
+max-width:900px;
+margin:30px auto;
+padding:25px;
+background:white;
+border-radius:15px;
+text-align:left;
+white-space:pre-wrap;
+line-height:1.6;
+}
+
+@media(max-width:700px){
+h1{font-size:30px}
+.search-box{flex-direction:column}
+}
