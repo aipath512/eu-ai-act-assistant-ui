@@ -1,51 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>EU AI Act Assistant</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="overlay">
+<div class="center">
 <h1>EU AI Act Assistant</h1>
-<p>Ask any question about EU AI Act compliance</p>
-
-<div class="modules">
-<button onclick="askModule('What are the AI governance requirements?')">AI Governance</button>
-<button onclick="askModule('What evidence is required for AI risk classification?')">Risk Classification</button>
-<button onclick="askModule('What information is required in AI inventory?')">AI Inventory</button>
-<button onclick="askModule('What AI practices are prohibited?')">Prohibited Practices</button>
-<button onclick="askModule('What are the high-risk AI requirements?')">High-Risk Assessment</button>
-<button onclick="askModule('What data governance requirements apply?')">Data Governance</button>
-</div>
-
-<div class="search-box">
-<input id="question" placeholder="Ask any question about EU AI Act...">
+<div class="search">
+<input id="question" placeholder="Ask any question about EU AI Act">
 <button onclick="ask()">Search</button>
 </div>
-
+</div>
 <div id="answer"></div>
 </div>
-
 <script>
 const API="https://eu-ai-act-search-api.aipath512.workers.dev/search?q=";
-
-async function runSearch(question){
- const box=document.getElementById("answer");
- box.innerText="Thinking...";
- const response=await fetch(API+encodeURIComponent(question));
- const data=await response.json();
- box.innerText=data.answer || "No answer";
-}
-
-function ask(){
- runSearch(document.getElementById("question").value);
-}
-
-function askModule(q){
- document.getElementById("question").value=q;
- runSearch(q);
+async function ask(){
+const box=document.getElementById("answer");
+box.innerText="Analysing evidence...";
+const r=await fetch(API+encodeURIComponent(document.getElementById("question").value));
+const d=await r.json();
+box.innerText=d.answer || "No answer";
 }
 </script>
 </body>
