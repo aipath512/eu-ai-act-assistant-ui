@@ -74,8 +74,26 @@ const d =
 await r.json();
 
 
+if (d.results && d.results.length > 0) {
+
+box.innerHTML = d.results.map(item => `
+
+<div class="result">
+
+<h3>${item.title}</h3>
+
+<p>${item.snippet}</p>
+
+</div>
+
+`).join("");
+
+} else {
+
 box.innerText =
-d.answer || "No answer";
+"No answer found";
+
+}
 
 
 }
