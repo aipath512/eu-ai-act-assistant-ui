@@ -1,15 +1,17 @@
 
-body{margin:0;background:#050b18;color:white;font-family:Arial,sans-serif}
-header{position:absolute;top:25px;left:30px;right:30px;display:flex;justify-content:space-between}
-.logo-text{font-size:28px;color:#d4af37}
-.meta{font-size:13px;color:#b8c0cc;margin-top:10px}
-.hamburger{font-size:28px;background:none;color:#d4af37;border:1px solid #d4af37;border-radius:50%}
-.hero{text-align:center;padding-top:130px}.hero h1{font-size:64px;margin:0}.hero h2{font-size:48px;color:#d4af37}
-.ticker{margin:50px auto;max-width:1200px;overflow:hidden;border:1px solid #d4af37;border-radius:25px;padding:15px}
-.track{display:flex;gap:20px;white-space:nowrap;animation:move 45s linear infinite}
-.track span{display:flex;align-items:center;gap:8px}.track img{width:32px}
+body{margin:0;background:#050b18;color:white;font-family:Arial,sans-serif;text-align:center}
+header{position:absolute;top:20px;left:25px;right:25px;display:flex;justify-content:space-between}
+.logo{color:#d4af37;font-size:28px}
+#meta{color:#aaa;font-size:13px;text-align:left;margin-top:8px}
+button{border-radius:25px;padding:12px 25px;background:#d4af37;border:0}
+main{padding-top:120px}
+h1{font-size:64px;margin:0}
+h2{font-size:45px;color:#d4af37}
+.ticker{margin:40px auto;max-width:1200px;overflow:hidden;border:1px solid #d4af37;border-radius:20px;padding:15px}
+.track{display:flex;gap:15px;white-space:nowrap;animation:move 50s linear infinite}
+.track span{display:flex;align-items:center;gap:5px}
+.track img{width:30px;height:20px}
 @keyframes move{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
-.search{text-align:center}.search input{width:70%;padding:20px;border-radius:35px;background:#101827;color:white;border:2px solid #d4af37}
-.search button{margin:20px;padding:15px 45px;border-radius:30px;background:#d4af37;border:0}
-.results{max-width:1000px;margin:40px auto;padding:35px;border-radius:30px;background:#111827}
-.card{background:#202938;padding:20px;border-radius:20px;margin:15px}
+input{width:60%;padding:20px;border-radius:30px;background:#101827;color:white;border:2px solid #d4af37}
+.results{max-width:900px;min-height:300px;margin:40px auto;padding:30px;background:#111827;border-radius:25px}
+.card{background:#202938;padding:20px;margin:15px;border-radius:15px;text-align:left}

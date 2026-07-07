@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -7,47 +7,47 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <header>
-<div class="brand">
-<div class="logo-text">5thelement.AI</div>
-<div class="meta" id="meta"></div>
+<div>
+<div class="logo">5thelement.AI</div>
+<div id="meta"></div>
 </div>
-<button class="hamburger">☰</button>
+<button>☰</button>
 </header>
 
-<section class="hero">
+<main>
 <h1>EU AI Act</h1>
 <h2>Search & Generator™</h2>
-</section>
 
-<div class="ticker"><div class="track"><span><img src="assets/flags/at.svg">Austria</span> • <span><img src="assets/flags/be.svg">Belgium</span> • <span><img src="assets/flags/bg.svg">Bulgaria</span> • <span><img src="assets/flags/hr.svg">Croatia</span> • <span><img src="assets/flags/cy.svg">Cyprus</span> • <span><img src="assets/flags/cz.svg">Czech Republic</span> • <span><img src="assets/flags/dk.svg">Denmark</span> • <span><img src="assets/flags/ee.svg">Estonia</span> • <span><img src="assets/flags/fi.svg">Finland</span> • <span><img src="assets/flags/fr.svg">France</span> • <span><img src="assets/flags/de.svg">Germany</span> • <span><img src="assets/flags/gr.svg">Greece</span> • <span><img src="assets/flags/hu.svg">Hungary</span> • <span><img src="assets/flags/ie.svg">Ireland</span> • <span><img src="assets/flags/it.svg">Italy</span> • <span><img src="assets/flags/lv.svg">Latvia</span> • <span><img src="assets/flags/lt.svg">Lithuania</span> • <span><img src="assets/flags/lu.svg">Luxembourg</span> • <span><img src="assets/flags/mt.svg">Malta</span> • <span><img src="assets/flags/nl.svg">Netherlands</span> • <span><img src="assets/flags/pl.svg">Poland</span> • <span><img src="assets/flags/pt.svg">Portugal</span> • <span><img src="assets/flags/ro.svg">Romania</span> • <span><img src="assets/flags/sk.svg">Slovakia</span> • <span><img src="assets/flags/si.svg">Slovenia</span> • <span><img src="assets/flags/es.svg">Spain</span> • <span><img src="assets/flags/se.svg">Sweden</span></div></div>
+<div class="ticker"><div class="track"><span><img src="assets/flags/at.svg">Austria</span> • <span><img src="assets/flags/be.svg">Belgium</span> • <span><img src="assets/flags/bg.svg">Bulgaria</span> • <span><img src="assets/flags/hr.svg">Croatia</span> • <span><img src="assets/flags/cy.svg">Cyprus</span> • <span><img src="assets/flags/cz.svg">Czech Republic</span> • <span><img src="assets/flags/dk.svg">Denmark</span> • <span><img src="assets/flags/ee.svg">Estonia</span> • <span><img src="assets/flags/fi.svg">Finland</span> • <span><img src="assets/flags/fr.svg">France</span> • <span><img src="assets/flags/de.svg">Germany</span> • <span><img src="assets/flags/gr.svg">Greece</span> • <span><img src="assets/flags/hu.svg">Hungary</span> • <span><img src="assets/flags/ie.svg">Ireland</span> • <span><img src="assets/flags/it.svg">Italy</span> • <span><img src="assets/flags/lv.svg">Latvia</span> • <span><img src="assets/flags/lt.svg">Lithuania</span> • <span><img src="assets/flags/lu.svg">Luxembourg</span> • <span><img src="assets/flags/mt.svg">Malta</span> • <span><img src="assets/flags/nl.svg">Netherlands</span> • <span><img src="assets/flags/pl.svg">Poland</span> • <span><img src="assets/flags/pt.svg">Portugal</span> • <span><img src="assets/flags/ro.svg">Romania</span> • <span><img src="assets/flags/sk.svg">Slovakia</span> • <span><img src="assets/flags/si.svg">Slovenia</span> • <span><img src="assets/flags/es.svg">Spain</span> • <span><img src="assets/flags/se.svg">Sweden</span> •</div></div>
 
-<section class="search">
-<input id="question" placeholder="Ask any question about EU AI Act...">
+<div class="search">
+<input id="question" placeholder="Ask any question about EU AI Act">
 <button onclick="ask()">Search</button>
-</section>
+</div>
 
-<section class="results">
-<h2>Search Results</h2>
+<div class="results">
+<h3>Search Results</h3>
 <div id="answer">Search results will appear here...</div>
-</section>
+</div>
+</main>
 
 <script>
 const now=new Date();
-const deadline=new Date("2026-08-02");
+const end=new Date("2026-08-02");
 document.getElementById("meta").innerHTML =
-"Version v0.1.0<br>Updated: "+now.toUTCString()+"<br>Days remaining: "+Math.ceil((deadline-now)/(1000*60*60*24))+" days";
+"Version v0.1.0<br>Updated: "+now.toUTCString()+"<br>Days remaining: "+Math.ceil((end-now)/86400000)+" days";
 
 const API="https://eu-ai-act-search-api.aipath512.workers.dev/search?q=";
 
 async function ask(){
-let box=document.getElementById("answer");
-box.innerHTML="Analysing...";
+let a=document.getElementById("answer");
 try{
 let r=await fetch(API+encodeURIComponent(document.getElementById("question").value));
 let d=await r.json();
-box.innerHTML=(d.results||[]).map(x=>`<div class="card"><h3>${x.title}</h3><p>${x.snippet}</p></div>`).join("") || "No result";
-}catch(e){box.innerHTML=e.message;}
+a.innerHTML=(d.results||[]).map(x=>"<div class='card'><b>"+x.title+"</b><p>"+x.snippet+"</p></div>").join("")||"No result";
+}catch(e){a.innerHTML=e.message;}
 }
 </script>
 </body>
