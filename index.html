@@ -9,112 +9,55 @@
 
 <body>
 
-<div class="page">
+<header class="header">
+  <div>
+    <h1>EU AI Act Generator™</h1>
+    <div class="meta">
+      Version v0.1.0<br>
+      Updated: 07 Jul 2026 22:45 UTC<br>
+      Countdown: 26 days until 2 August 2026
+    </div>
+  </div>
 
-<header class="top-header">
-
-<div class="brand">
-<h1>EU AI Act Generator™</h1>
-<div class="system-info">
-<div>Version v0.1.0</div>
-<div>Updated: 07 Jul 2026 22:45 UTC</div>
-<div>Countdown: 26 days until 2 August 2026</div>
-</div>
-</div>
-
-<button class="hamburger">☰</button>
-
+  <button class="menu">☰</button>
 </header>
-
 
 <main>
 
-<div class="search-area">
+<section class="search">
+  <input placeholder="Ask any question about EU AI Act...">
+  <button>Search</button>
+</section>
 
-<input 
-id="question"
-placeholder="Ask any question about EU AI Act..."
->
+<section class="ticker">
+  <div class="ticker-track">
+    MODULES →
+    &nbsp; Prohibited Practices •
+    Risk Classification •
+    AI Literacy •
+    High-Risk Assessment •
+    Technical Documentation •
+    Human Oversight •
+    Data Governance •
+    Logging & Monitoring •
+    Incident Reporting →
+  </div>
+</section>
 
-<button onclick="ask()">Search</button>
+<section class="results">
+  <h2>Search Result</h2>
 
-</div>
-
-
-<div class="answer-box">
-<div id="answer">
-Your EU AI Act answer will appear here.
-</div>
-</div>
-
-
-<section class="modules">
-<h2>EU AI Act Modules</h2>
-
-<a>01 — Prohibited Practices →</a>
-<a>02 — Risk Classification →</a>
-<a>03 — AI Literacy →</a>
-<a>04 — High-Risk Assessment →</a>
-<a>05 — Technical Documentation →</a>
-<a>06 — Human Oversight →</a>
-<a>07 — Data Governance →</a>
-<a>08 — Logging & Monitoring →</a>
-<a>09 — Incident Reporting →</a>
-<a>10 — Governance →</a>
+  <div class="result-card">
+    <h3>Article 14 — Human Oversight</h3>
+    <p>
+      Human oversight measures and requirements under the EU AI Act.
+    </p>
+    <button>See More</button>
+  </div>
 
 </section>
 
 </main>
-
-</div>
-
-
-<script>
-
-const API =
-"https://eu-ai-act-search-api.aipath512.workers.dev/search?q=";
-
-async function ask(){
-
-const box=document.getElementById("answer");
-
-box.innerText="Analysing EU AI Act evidence...";
-
-try{
-
-const r=await fetch(
-API + encodeURIComponent(document.getElementById("question").value)
-);
-
-const d=await r.json();
-
-if(d.results && d.results.length){
-
-box.innerHTML=d.results.map(item=>`
-
-<div class="result">
-<h3>EU AI Act Evidence</h3>
-<p>${item.snippet}</p>
-<button>See More →</button>
-</div>
-
-`).join("");
-
-}else{
-
-box.innerText="No relevant evidence found.";
-
-}
-
-}catch(e){
-
-box.innerText=e.message;
-
-}
-
-}
-
-</script>
 
 </body>
 </html>
